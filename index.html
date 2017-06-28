@@ -3,16 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Soldiers</title>
+    <script src="DragManager.js"></script>
     <link type="text/css" rel="stylesheet" href="index.css">
     <link href="https://fonts.googleapis.com/css?family=Oswald|Ubuntu" rel="stylesheet">
-    <script src="DragManager.js"></script>
+    <script>
+        DragManager.onDragEnd = function(dragObject) {
+            dragObject.elem.style.display = 'none';
+        };
+    </script>
 </head>
 <body>
 <div class = "head" >
     <h1>Солдаты</h1>
     <p>Введи имя и звание солдата а затем расположи его на поле</p>
 </div>
-<form onsubmit="formSubmit(); return false" name="soldierForm">
+    <form onsubmit="formSubmit(); return false" name="soldierForm">
     <label>Имя солдата:
     <input  type = "text" placeholder="Введите имя солдата"  name="soldierName">
     </label>
@@ -26,10 +31,11 @@
     </select>
     </label>
     <button type="submit" id="soldierCreate">Создать солдата</button>
-</form>
+    </form>
 <div id = "field">
+    </div>
 
-</div>
+<button id="retire" onclick = "retireAllOnclick()">Уволить всех</button>
 <script src = "index.js"></script>
 
 </body>

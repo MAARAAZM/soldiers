@@ -2,6 +2,7 @@ var form = document.forms.soldierForm;
 var soldierNameForm = form.elements.soldierName;
 var soldierRankForm = form.elements.soldierRank;
 var field = document.getElementById('field');
+var retireAll = document.getElementById('retire');
 
 function formSubmit() {
   var soldier = new Soldier(soldierNameForm.value, soldierRankForm.value);
@@ -62,7 +63,7 @@ var showingGreeting;
 var showingGoodbye;
 var greetingTarget;
 
-document.onclick = function(e) {
+field.onclick = function(e) {
     if (showingGreeting || showingGoodbye) return;
     var target = e.target;
 
@@ -73,7 +74,7 @@ document.onclick = function(e) {
     tooltipElem.className = 'tooltip';
     tooltipElem.innerHTML = tooltip;
     tooltipElem.style.zIndex = 9999;
-    document.body.appendChild(tooltipElem);
+    field.appendChild(tooltipElem);
 
     var coords = target.getBoundingClientRect();
 
@@ -92,11 +93,13 @@ document.onclick = function(e) {
     greetingTarget = target;
 };
 
-document.onmouseout = function() {
+
+
+field.onmouseout = function() {
     if (showingGreeting) {
 
         setTimeout(function () {
-            document.body.removeChild(showingGreeting);
+            field.removeChild(showingGreeting);
             showingGreeting = null;
 
             var target = greetingTarget;
@@ -108,7 +111,7 @@ document.onmouseout = function() {
             tooltipElem.className = 'tooltip';
             tooltipElem.innerHTML = tooltip;
             tooltipElem.style.zIndex = 9999;
-            document.body.appendChild(tooltipElem);
+            field.appendChild(tooltipElem);
 
             var coords = target.getBoundingClientRect();
 
@@ -128,7 +131,7 @@ document.onmouseout = function() {
 
             setTimeout(function () {
                 if (showingGoodbye) {
-                    document.body.removeChild(showingGoodbye);
+                    field.removeChild(showingGoodbye);
                 }
                 showingGoodbye = null;
             }, 1200)
@@ -138,6 +141,11 @@ document.onmouseout = function() {
 
 };
 
+function retireAllOnclick () {
+       while (field.lastChild) {
+            field.removeChild(field.lastChild);
+        }
+};
 
 
 

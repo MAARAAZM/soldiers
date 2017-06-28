@@ -113,7 +113,7 @@ var DragManager = new function() {
         var avatar = dragObject.avatar;
 
         // инициировать начало переноса
-        document.body.appendChild(avatar);
+        field.appendChild(avatar);
         avatar.style.zIndex = 1000;
         avatar.style.position = 'absolute';
     }
@@ -133,7 +133,7 @@ var DragManager = new function() {
             return null;
         }
 
-        return elem.closest('.soldier');
+        return elem.closest('.droppable');
     }
 
     document.onmousemove = onMouseMove;
