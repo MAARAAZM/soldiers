@@ -1,23 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Soldiers</title>
-    <script src="DragManager.js"></script>
     <link type="text/css" rel="stylesheet" href="index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Oswald|Ubuntu" rel="stylesheet">
-    <script>
-        DragManager.onDragEnd = function(dragObject) {
-            dragObject.elem.style.display = 'none';
-        };
-    </script>
 </head>
-<body>
-<div class = "head" >
-    <h1>Солдаты</h1>
-    <p>Введи имя и звание солдата а затем расположи его на поле</p>
-</div>
-    <form onsubmit="formSubmit(); return false" name="soldierForm">
+
+<body id = 'body' onselectstart="return false">
+        <div class = "head"  >
+            <h1>Солдаты</h1>
+            <p>Введи имя и звание солдата а затем расположи его на поле. Перемещай солдата стрелками. "E" и "Q" - вращение прицела. "ПРОБЕЛ" - выстрел. </p>
+        </div>
+        <form name="soldierForm">
     <label>Имя солдата:
     <input  type = "text" placeholder="Введите имя солдата"  name="soldierName">
     </label>
@@ -32,11 +30,18 @@
     </label>
     <button type="submit" id="soldierCreate">Создать солдата</button>
     </form>
-<div id = "field">
-    </div>
-
-<button id="retire" onclick = "retireAllOnclick()">Уволить всех</button>
+        <div class = 'container'>
+        <div id = "field">
+        </div>
+        <div class="droppable">
+             Чтобы уволить солдата
+             Перетащи его сюда
+        </div>
+            <img class="explosion" src="image/explosion.png" style="visibility: hidden">
+        </div>
+<button id="retire">Уволить всех</button>
 <script src = "index.js"></script>
+<script type="text/javascript"></script>
 
 </body>
 </html>

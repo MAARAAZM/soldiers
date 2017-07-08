@@ -1,6 +1,8 @@
 html{
     background: url("image/bg.jpg");
     background-size: cover;
+background-repeat: no-repeat;
+background-attachment: fixed;
 }
 
 .head{
@@ -90,13 +92,23 @@ button:focus, button:hover {
     margin: 0;
     transition: transform 1s;
     outline: none;
-    position: relative;
+    position: absolute;
     cursor: pointer;
+    z-index: 100;
 }
 
 .soldier:hover{
-    transform: rotateY(30deg);
     box-shadow: 0 5px 10px #000000;
+}
+
+img{
+ margin: auto;
+    text-align: center;
+    padding-left: 20px;
+}
+
+img:hover{
+    cursor: auto;
 }
 
 
@@ -134,5 +146,23 @@ button:focus, button:hover {
     font-weight: bold;
     color: #98112a;
     padding: 0;
+
+}
+
+.bullet{
+    position: absolute;
+    left: 57%;
+    top: 30%;
+    width: 10px;
+    height: 10px;
+    background-color: orangered;
+    margin: 0;
+    border-radius: 5px;
+    transition: 1ms;
+}
+
+.explosion{
+    position: fixed;
+    width: 100px;
 
 }
