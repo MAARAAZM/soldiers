@@ -285,7 +285,7 @@
 
             requestAnimationFrame(function animate(time) {
                 var timePassed = time - start;
-                console.log(time, start);
+              //  console.log(time, start);
                 if (timePassed > duration) timePassed = duration;
                 draw(timePassed);
                 if (timePassed < duration) {
