@@ -259,18 +259,22 @@
             bullet.style.top = y + timePassed * Math.sin(angle*3.14/180) + 'px';
             bulletCoords = bullet.getBoundingClientRect();
             var elem =  document.elementFromPoint(bulletCoords.left, bulletCoords.top);
-            if (elem.getAttribute('data-greeting')){
-                if (elem !== soldier) {
-                    elem.parentNode.removeChild(elem);
-                    showExplosion(bulletCoords.left, bulletCoords.top)
+            try {
+                if (elem.parentNode.getAttribute('data-greeting')) {
+                    elem = elem.parentNode;
+                    if (elem !== soldier) {
+                        elem.parentNode.removeChild(elem);
+                        showExplosion(bulletCoords.left, bulletCoords.top)
+                    }
                 }
-            }
-            if (elem.parentNode.getAttribute('data-greeting')){
-                elem = elem.parentNode;
-                if (elem !== soldier) {
-                    elem.parentNode.removeChild(elem);
-                    showExplosion(bulletCoords.left, bulletCoords.top)
+
+                if (elem.getAttribute('data-greeting')){
+                    if (elem !== soldier) {
+                        elem.parentNode.removeChild(elem);
+                        showExplosion(bulletCoords.left, bulletCoords.top)
+                    }
                 }
+            } catch (err) {
             }
 
         }, animDuration);
