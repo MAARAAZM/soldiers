@@ -3,6 +3,7 @@ html{
     background-size: cover;
 background-repeat: no-repeat;
 background-attachment: fixed;
+    overflow:  hidden;
 }
 
 .head{
@@ -101,14 +102,20 @@ button:focus, button:hover {
     box-shadow: 0 5px 10px #000000;
 }
 
-img{
- margin: auto;
-    text-align: center;
-    padding-left: 20px;
+.soldier:focus{
+    box-shadow: 0 5px 10px #000000;
 }
 
-img:hover{
-    cursor: auto;
+.pointer{
+    display: inherit;
+    background: url("image/pointer.png") no-repeat;
+    background-position-x: 20px;
+    margin: auto;
+    width: 80px;
+    height: 62px;
+    text-align: center;
+    padding-left: 20px;
+    z-index: 5000;
 }
 
 
