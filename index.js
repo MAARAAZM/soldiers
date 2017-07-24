@@ -50,8 +50,8 @@
 
     function Soldier(name, rank) {
         Soldiers.apply(this, arguments);
-        this.name = 'name';
-        this.rank = 'rank';
+        this.name = name;
+        this.rank = rank;
     }
 
     Soldier.prototype = Object.create(Soldiers.prototype);
@@ -62,7 +62,7 @@
         var soldier = new Soldier(soldierNameForm.value, soldierRankForm.value);
         var soldierImage = document.createElement('label');
         var fieldCoords = field.getBoundingClientRect();
-        var pointer = document.createElement('img');
+        var pointer = document.createElement('label');
 
         fireAngle = 0;
         soldierImage.style.background = 'url(' + soldier.image + ')';
@@ -74,15 +74,18 @@
         soldierImage.style.left = randomInteger(fieldCoords.left, fieldCoords.right-80) + 'px';
         soldierImage.style.top = randomInteger(fieldCoords.top, fieldCoords.bottom-90) + 'px';
         pointer.className = 'pointer';
-        pointer.setAttribute('src', 'image/pointer.png');
         soldierImage.appendChild(pointer);
+
 
         $(function () {
             $('.soldier').draggable({
                 zIndex: 100,
                 scroll: false,
-                containment: ".container"
+                containment: ".container",
+                create: function (){this.focus()},
+                stop: function (){this.focus()}
             });
+
 
             $('.soldier').click(fieldOnclick);
 
@@ -104,7 +107,7 @@
 
 
     function move(e) {
-        var target = (e.target.getAttribute('data-greeting'))? e.target : e.target.parentNode;
+        var target = e.target;
         var coords = target.getBoundingClientRect();
 
         var container = document.querySelector('.container').getBoundingClientRect();
@@ -129,14 +132,10 @@
             case 69: //прицел+ e
                fireAngle += 2.5;
                target.firstChild.style.transform = 'rotate('+ fireAngle +'deg)';
-                target.firstChild.style.webkitTransform = 'rotate('+ fireAngle +'deg)';
-                target.firstChild.style.mozTransform = 'rotate('+ fireAngle +'deg)';
                 return false;
             case 81: //прицел- q
                 fireAngle += -2.5;
                 target.firstChild.style.transform = 'rotate('+ fireAngle +'deg)';
-                target.firstChild.style.webkitTransform = 'rotate('+ fireAngle +'deg)';
-                target.firstChild.style.mozTransform = 'rotate('+ fireAngle +'deg)';
                 return false;
             case 32: //огонь пробел
                 fire(fireAngle, target);
@@ -146,6 +145,10 @@
 
 
     function fieldOnclick(e) {
+
+       if (e.target.className === "pointer"){
+            e.target.parentNode.focus()
+        }
 
        var target = (e.target.getAttribute('data-greeting'))? e.target : e.target.parentNode;
 
@@ -159,7 +162,7 @@
         var tooltipElem = document.createElement('div');
         tooltipElem.className = 'tooltip';
         tooltipElem.innerHTML = tooltip;
-        tooltipElem.style.zIndex = 9999;
+        tooltipElem.style.zIndex = 1000;
         field.appendChild(tooltipElem);
 
         var coords = target.getBoundingClientRect();
